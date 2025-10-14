@@ -5,20 +5,22 @@ const noteRoutes = require('./routes/noteRoutes');
 
 const app = express();
 
-// ✅ Allow frontend origin explicitly
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }));
 
 app.use(express.json());
 
-// Routes
+// Root route for Render health check
+app.get('/', (req, res) => {
+  res.send('✅ Backend is running successfully!');
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/notes', noteRoutes);
 
-// Error handler
 app.use((err, req, res, next) => {
   res.status(500).json({ message: err.message });
 });
