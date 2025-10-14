@@ -15,7 +15,7 @@ app.use(express.json());
 
 // Root route for Render health check
 app.get('/', (req, res) => {
-  res.send('✅ Backend is running successfully!');
+  res.send('Backend is running successfully!');
 });
 
 app.use('/api/auth', authRoutes);
